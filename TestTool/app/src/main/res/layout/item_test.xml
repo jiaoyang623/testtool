@@ -5,25 +5,24 @@
 
         <variable
             name="data"
-            type="android.content.pm.ActivityInfo" />
+            type="Class" />
 
         <variable
             name="presenter"
-            type="guru.ioio.tool.ActivityListActivity" />
+            type="guru.ioio.tool.TestActivity" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{(v)->presenter.onItemClick(data)}"
+            android:onClick="@{(v)->presenter.onItemClick(v, data)}"
             android:padding="15dp"
-            android:text="@{presenter.getActivityName(data)}"
+            android:text="@{data.simpleName}"
             android:textColor="#ff000000"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:textSize="15sp" />
+    </FrameLayout>
 </layout>
