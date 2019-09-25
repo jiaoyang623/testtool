@@ -5,7 +5,7 @@
 
         <variable
             name="presenter"
-            type="guru.ioio.tool.MainActivity" />
+            type="guru.ioio.tool.DeeplinkActivity" />
     </data>
 
     <ScrollView
@@ -53,6 +53,12 @@
                     android:onClick="@{(v)->presenter.onClearClick()}"
                     android:text="clear" />
             </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(V)->presenter.onTestProviderClick()}"
+                android:text="test provider" />
 
         </LinearLayout>
     </ScrollView>

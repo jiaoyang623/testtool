@@ -1,23 +1,27 @@
 package guru.ioio.tool;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 
-import guru.ioio.tool.databinding.ActivityMainBinding;
+import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+import guru.ioio.tool.databinding.ActivityDeeplinkBinding;
+
+public class DeeplinkActivity extends AppCompatActivity {
     public ObservableField<String> input = new ObservableField<>();
-    private ActivityMainBinding mBinding;
+    private ActivityDeeplinkBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_deeplink);
         mBinding.setPresenter(this);
     }
 
@@ -35,6 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onClearClick() {
         input.set("");
+        return true;
+    }
+
+    public boolean onTestProviderClick() {
+        Cursor c = getContentResolver().query(Uri.parse("content://guru.ioio.tool.test"), null, null, null, null);
+        if (c != null) {
+            Log.i("DeeplinkActivity", "TestProvider: " + Arrays.toString(c.getColumnNames()));
+            c.close();
+        }
         return true;
     }
 }
