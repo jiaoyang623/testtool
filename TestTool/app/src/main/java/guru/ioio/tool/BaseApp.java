@@ -3,6 +3,7 @@ package guru.ioio.tool;
 import android.app.Application;
 import android.content.Context;
 
+import guru.ioio.tool.apptrace.AppTraceSDK;
 import guru.ioio.tool.hook.AMSHookManager;
 import guru.ioio.tool.hook.HHookManager;
 
@@ -12,5 +13,11 @@ public class BaseApp extends Application {
         super.attachBaseContext(base);
         HHookManager.getInstance();
         AMSHookManager.getInstance();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AppTraceSDK.init(this);
     }
 }
