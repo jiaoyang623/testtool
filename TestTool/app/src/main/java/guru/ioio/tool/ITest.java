@@ -2,6 +2,8 @@ package guru.ioio.tool;
 
 import android.view.View;
 
+import io.reactivex.Observable;
+
 public interface ITest {
-    String onClick(View v);
+    Observable<String> onClick(View v);
 }

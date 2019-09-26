@@ -53,5 +53,6 @@ dependencies {
     implementation 'org.reflections:reflections:0.9.11'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 }
 

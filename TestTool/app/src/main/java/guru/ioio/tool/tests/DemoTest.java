@@ -2,11 +2,9 @@ package guru.ioio.tool.tests;
 
 import android.view.View;
 
-import guru.ioio.tool.ITest;
-
-public class DemoTest implements ITest {
+public class DemoTest extends BaseTest {
     @Override
-    public String onClick(View v) {
+    public String doClick(View v) {
         return "hello test";
     }
 }

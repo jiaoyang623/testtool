@@ -11,8 +11,8 @@ public class BaseApp extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        HHookManager.getInstance();
-        AMSHookManager.getInstance();
+//        HHookManager.getInstance();
+//        AMSHookManager.getInstance();
     }
 
     @Override

@@ -14,6 +14,7 @@ import java.util.List;
 import guru.ioio.tool.databinding.ActivityTestBinding;
 import guru.ioio.tool.tests.DemoTest;
 import guru.ioio.tool.tests.DnsTest;
+import guru.ioio.tool.tests.InfoTest;
 import guru.ioio.tool.utils.ExceptionUtils;
 import guru.ioio.tool.utils.RVBindingBaseAdapter;
 import io.reactivex.Observable;
@@ -25,6 +26,7 @@ public class TestActivity extends Activity {
     private static Class[] TEST_LIST = {
             DemoTest.class,
             DnsTest.class,
+            InfoTest.class,
     };
     public ObservableField<String> result = new ObservableField<>();
     public ObservableBoolean isLoading = new ObservableBoolean(false);
@@ -51,20 +53,27 @@ public class TestActivity extends Activity {
 
     public boolean onItemClick(View v, Class<? extends ITest> clazz) {
         isLoading.set(true);
-        Disposable d = Observable.create(emitter -> {
-            try {
-                ITest test = clazz.newInstance();
-                emitter.onNext(test.onClick(v));
-                emitter.onComplete();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            }
-        }).subscribeOn(Schedulers.io())
+        Observable<String> observable = null;
+        try {
+            ITest test = clazz.newInstance();
+            observable = test.onClick(v);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        if (observable == null) {
+            result.set("ITest returns nothing");
+            isLoading.set(false);
+            return true;
+        }
+        Disposable d = observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        s -> result.set(s == null ? "" : s.toString()),
+                        s -> {
+                            result.set(s);
+                            isLoading.set(false);
+                        },
                         e -> {
                             result.set(ExceptionUtils.getStackTrace(e));
                             isLoading.set(false);

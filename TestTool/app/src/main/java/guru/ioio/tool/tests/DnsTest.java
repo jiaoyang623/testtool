@@ -18,12 +18,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.URI;
 
-import guru.ioio.tool.ITest;
 import guru.ioio.tool.utils.GzipUtils;
 
-public class DnsTest implements ITest {
+public class DnsTest extends BaseTest {
     @Override
-    public String onClick(View v) {
+    public String doClick(View v) {
         String result = getDnsCacheRequest();
         return result == null ? "none" : result;
     }
