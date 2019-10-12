@@ -51,15 +51,6 @@ public class DeeplinkActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean onTestProviderClick() {
-        Cursor c = getContentResolver().query(Uri.parse("content://guru.ioio.tool.test"), null, null, null, null);
-        if (c != null) {
-            Log.i("DeeplinkActivity", "TestProvider: " + Arrays.toString(c.getColumnNames()));
-            c.close();
-        }
-        return true;
-    }
-
     public boolean onItemClick(String data) {
         input.set(data);
         return true;
