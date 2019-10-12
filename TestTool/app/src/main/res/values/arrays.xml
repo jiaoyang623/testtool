@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="deeplink_list">
+        <item>qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwallet</item>
+        <item>qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fcreditmall</item>
+        <item>qhvideo://vapp.360.cn/home</item>
+    </array>
+</resources>

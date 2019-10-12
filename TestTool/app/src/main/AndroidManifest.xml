@@ -44,6 +44,10 @@
             android:name=".TestProvider"
             android:authorities="guru.ioio.tool.test"
             android:process=":p" />
+
+        <activity
+            android:name=".GlideActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

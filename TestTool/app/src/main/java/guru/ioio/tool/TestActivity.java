@@ -20,7 +20,6 @@ import guru.ioio.tool.utils.RVBindingBaseAdapter;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class TestActivity extends Activity {
     private static Class[] TEST_LIST = {
@@ -67,7 +66,7 @@ public class TestActivity extends Activity {
             isLoading.set(false);
             return true;
         }
-        Disposable d = observable.subscribeOn(Schedulers.io())
+        Disposable d = observable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         s -> {
