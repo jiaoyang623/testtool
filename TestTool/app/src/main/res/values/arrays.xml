@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="deeplink_list">
-        <item>qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwallet</item>
-        <item>qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fcreditmall</item>
-        <item>qhvideo://vapp.360.cn/home</item>
+        <item>钱包|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwallet</item>
+        <item>积分商城|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fcreditmall</item>
+        <item>首页|qhvideo://vapp.360.cn/home</item>
+        <item>电视剧query跳转|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fdetailpage%3fcat%3d2%26videoid%3dR4Vxan7lRmTqOH</item>
+        <item>电视剧uri跳转|qhvideo://vapp.360.cn/home?uri=qhvideo%3a%2f%2fvapp.360.cn%2fdetailpage%3fcat%3d2%26videoid%3dR4Vxan7lRmTqOH</item>
     </array>
 </resources>
