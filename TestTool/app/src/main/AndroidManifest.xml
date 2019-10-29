@@ -48,6 +48,9 @@
         <activity
             android:name=".GlideActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".FunctionTestActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
