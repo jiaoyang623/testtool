@@ -22,6 +22,7 @@ public class LiveDataContainer extends BaseContainer {
             model = ViewModelProviders.of((FragmentActivity) context).get(LiveDataModel.class);
             model.getData().observe((LifecycleOwner) context, this::set);
         }
+        mBinding.textResult.setText("click");
         mBinding.textResult.setOnClickListener(view -> model.getData().setValue(new Date().toString()));
         return out;
     }
