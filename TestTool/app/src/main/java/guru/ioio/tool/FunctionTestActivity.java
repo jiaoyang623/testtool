@@ -17,12 +17,14 @@ import guru.ioio.tool.databinding.ActivityFunctionTestBinding;
 import guru.ioio.tool.function.BaseContainer;
 import guru.ioio.tool.function.IContainer;
 import guru.ioio.tool.function.LifecycleContainer;
+import guru.ioio.tool.function.LiveDataContainer;
 import guru.ioio.tool.utils.RVBindingBaseAdapter;
 
 public class FunctionTestActivity extends AppCompatActivity {
     private Class[] mContainers = {
             BaseContainer.class,
             LifecycleContainer.class,
+            LiveDataContainer.class,
     };
 
     private ActivityFunctionTestBinding mBinding;
