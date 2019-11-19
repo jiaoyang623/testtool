@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="deeplink_list">
+        <item>专题页|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2falbum</item>
         <item>钱包|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwallet</item>
         <item>积分商城|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fcreditmall</item>
         <item>首页|qhvideo://vapp.360.cn/home</item>
-        <item>电视剧query跳转|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fdetailpage%3fcat%3d2%26videoid%3dR4Vxan7lRmTqOH</item>
-        <item>电视剧uri跳转|qhvideo://vapp.360.cn/home?uri=qhvideo%3a%2f%2fvapp.360.cn%2fdetailpage%3fcat%3d2%26videoid%3dR4Vxan7lRmTqOH</item>
+        <item>
+            电视剧query跳转|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fdetailpage%3fcat%3d2%26videoid%3dR4Vxan7lRmTqOH
+        </item>
+        <item>
+            电视剧uri跳转|qhvideo://vapp.360.cn/home?uri=qhvideo%3a%2f%2fvapp.360.cn%2fdetailpage%3fcat%3d2%26videoid%3dR4Vxan7lRmTqOH
+        </item>
+        <item>
+            短视频1|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fshortdetail%3ftitle%3d%e3%80%8a%e7%bb%88%e7%bb%93%e8%80%856%ef%bc%9a%e9%bb%91%e6%9a%97%e5%91%bd%e8%bf%90%e3%80%8b%26url%3dhttps%3a%2f%2fv.360kan.com%2fsv%2fbYTkOmbqTBD6UC.html%26website%3dfanqie%26xstm%3dhttp%253A%252F%252Fxstm.v.360.cn%252Fmovie%252Ffanqie%253Furl%253Dhttps%25253A%25252F%25252Fv.360kan.com%25252Fsv%25252FbYTkOmbqTBD6UC.html%2526m3u%253D1%2526quality%253Dnormal%2526act%253Dplay%26isDetailPlay%3d0%26ext%3dgxthz%26luc%3dgxthz
+        </item>
+        <item>
+            短视频2|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fshortdetail%3ftitle%3dJankos%e9%85%92%e6%a1%b6%e4%b8%9d%e8%a1%80%e5%8f%8d%e7%a7%80%26url%3dhttp%3a%2f%2fv.360kan.com%2fsv%2fdYPmOmbrUBD3TS.html%26website%3dfanqie%26xstm%3dhttp%253A%252F%252Fxstm.v.360.cn%252Fmovie%252Ffanqie%253Furl%253Dhttp%25253A%25252F%25252Fv.360kan.com%25252Fsv%25252FdYPmOmbrUBD3TS.html%2526m3u%253D1%2526quality%253Dnormal%2526act%253Dplay%26isDetailPlay%3d0%26ext%3dgxthz%26luc%3dgxthz
+        </item>
+        <item>
+            短视频3|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fshortdetail%3ftitle%3d%e8%97%8f%e7%8d%92%e4%b9%9f%e6%9c%89%e6%9f%94%e6%83%85%e4%b8%80%e9%9d%a2%ef%bc%9a%e4%bb%bb%e7%94%b1%e5%a5%b3%e5%ad%a9%e8%ba%ba%e5%9c%a8%e8%ba%ab%e4%b8%8a%26url%3dhttp%3a%2f%2fv.360kan.com%2fsv%2fcIPqcmDsTBb3US.html%26website%3dfanqie%26xstm%3dhttp%253A%252F%252Fxstm.v.360.cn%252Fmovie%252Ffanqie%253Furl%253Dhttp%25253A%25252F%25252Fv.360kan.com%25252Fsv%25252FcIPqcmDsTBb3US.html%2526m3u%253D1%2526quality%253Dnormal%2526act%253Dplay%26isDetailPlay%3d0%26ext%3dgxthz%26luc%3dgxthz
+        </item>
+        <item>
+            短视频4|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fshortdetail%3ftitle%3d12%e5%b0%8f%e6%97%b6%e5%86%85%e6%8a%8a%e5%a5%bd%e5%8f%8b%e7%9a%84%e7%94%b7%e6%9c%8b%e5%8f%8b%e5%a4%ba%e5%88%b0%ef%bc%8c%e5%8d%b3%e5%be%97%e4%b8%80%e4%ba%bf%e5%85%83%26url%3dhttp%3a%2f%2fv.360kan.com%2fsv%2fcoPjOWbsTxjzUC.html%26website%3dfanqie%26xstm%3dhttp%253A%252F%252Fxstm.v.360.cn%252Fmovie%252Ffanqie%253Furl%253Dhttp%25253A%25252F%25252Fv.360kan.com%25252Fsv%25252FcoPjOWbsTxjzUC.html%2526m3u%253D1%2526quality%253Dnormal%2526act%253Dplay%26isDetailPlay%3d0%26ext%3dgxthz%26luc%3dgxthz
+        </item>
     </array>
 </resources>

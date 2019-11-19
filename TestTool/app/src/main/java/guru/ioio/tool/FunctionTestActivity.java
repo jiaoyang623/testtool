@@ -18,6 +18,7 @@ import guru.ioio.tool.function.BaseContainer;
 import guru.ioio.tool.function.IContainer;
 import guru.ioio.tool.function.LifecycleContainer;
 import guru.ioio.tool.function.LiveDataContainer;
+import guru.ioio.tool.function.PagingContainer;
 import guru.ioio.tool.utils.RVBindingBaseAdapter;
 
 public class FunctionTestActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class FunctionTestActivity extends AppCompatActivity {
             BaseContainer.class,
             LifecycleContainer.class,
             LiveDataContainer.class,
+            PagingContainer.class,
     };
 
     private ActivityFunctionTestBinding mBinding;
