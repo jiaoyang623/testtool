@@ -14,6 +14,7 @@ import java.util.List;
 import guru.ioio.tool.databinding.ActivityTestBinding;
 import guru.ioio.tool.tests.DemoTest;
 import guru.ioio.tool.tests.DnsTest;
+import guru.ioio.tool.tests.HookWifiManagerTest;
 import guru.ioio.tool.tests.InfoTest;
 import guru.ioio.tool.tests.MSATest;
 import guru.ioio.tool.tests.MacAddress6Test;
@@ -34,6 +35,7 @@ public class TestActivity extends Activity {
             MacAddress6Test.class,
             MacAddress7Test.class,
             MacAddress8Test.class,
+            HookWifiManagerTest.class,
     };
     public ObservableField<String> result = new ObservableField<>();
     public ObservableBoolean isLoading = new ObservableBoolean(false);
