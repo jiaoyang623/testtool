@@ -2,12 +2,11 @@ package guru.ioio.tool;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.bun.miitmdid.core.JLibrary;
 
 import guru.ioio.tool.apptrace.AppTraceSDK;
-import guru.ioio.tool.hook.AMSHookManager;
-import guru.ioio.tool.hook.HHookManager;
 
 public class BaseApp extends Application {
     @Override
@@ -22,5 +21,11 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         AppTraceSDK.init(this);
+    }
+
+    @Override
+    public Object getSystemService(String name) {
+        Log.i("BaseApp", "getSystemService " + name);
+        return super.getSystemService(name);
     }
 }

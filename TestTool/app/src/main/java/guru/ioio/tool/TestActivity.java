@@ -16,6 +16,9 @@ import guru.ioio.tool.tests.DemoTest;
 import guru.ioio.tool.tests.DnsTest;
 import guru.ioio.tool.tests.InfoTest;
 import guru.ioio.tool.tests.MSATest;
+import guru.ioio.tool.tests.MacAddress6Test;
+import guru.ioio.tool.tests.MacAddress7Test;
+import guru.ioio.tool.tests.MacAddress8Test;
 import guru.ioio.tool.utils.ExceptionUtils;
 import guru.ioio.tool.utils.RVBindingBaseAdapter;
 import io.reactivex.Observable;
@@ -28,6 +31,9 @@ public class TestActivity extends Activity {
             DnsTest.class,
             InfoTest.class,
             MSATest.class,
+            MacAddress6Test.class,
+            MacAddress7Test.class,
+            MacAddress8Test.class,
     };
     public ObservableField<String> result = new ObservableField<>();
     public ObservableBoolean isLoading = new ObservableBoolean(false);

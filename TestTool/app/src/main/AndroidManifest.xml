@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".BaseApp"
@@ -33,12 +34,13 @@
         </activity>
 
         <activity
-            android:name=".TestActivity"
+            android:name=".DeeplinkActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".DeeplinkActivity"
+            android:name=".TestActivity"
             android:screenOrientation="portrait" />
+
 
         <provider
             android:name=".TestProvider"
