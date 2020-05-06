@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="deeplink_list">
+        <item>网页浏览|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwebview%3furl%3dhttp%253a%252f%252fwww.360kan.com%252fappdownload</item>
+        <item>电视台|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2flivelist</item>
+        <item>直播流|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fplayvideo%3ftitle%3d%e9%87%91%e9%aa%a8%e6%9c%b5%26playurl%3drtmp%253a%252f%252flive.mygobatv.com%252fgoba%252fstream01</item>
+        <item> H5下载|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwebview%3furl%3dhttp%253a%252f%252fdown.360safe.com%252f360kan%252f360kan_android.apk%26title%3dtest</item>
         <item>快资讯|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fkuaizixun%3ffrom%3dtest2</item>
         <item>专题页|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2falbum</item>
         <item>钱包|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwallet</item>

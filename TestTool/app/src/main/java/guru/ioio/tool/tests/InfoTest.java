@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.view.View;
 
@@ -27,7 +29,7 @@ public class InfoTest implements ITest {
         return serial;
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint({"CheckResult", "MissingPermission"})
     @Override
     public Observable<String> onClick(View v) {
         return Observable.create(e -> ((Activity) v.getContext()).runOnUiThread(() -> {
@@ -35,16 +37,29 @@ public class InfoTest implements ITest {
                     rxPermissions.request(Manifest.permission.READ_PHONE_STATE)
                             .subscribe(b -> {
                                 StringBuilder builder = new StringBuilder();
-                                String aid = android.provider.Settings.System.getString(v.getContext().getContentResolver(), "android_id");
+                                String aid = Settings.System.getString(v.getContext().getContentResolver(), "android_id");
                                 String sn = getDeviceSerial();
                                 builder.append("AndroidID:\t").append(aid).append('\n')
                                         .append("MD5:\t").append(Md5Util.MD5Encode(aid)).append('\n')
                                         .append("SerialNo:\t").append(sn).append('\n')
                                         .append("MD5:\t").append(Md5Util.MD5Encode(sn)).append('\n');
-                                if (b) {
-                                    @SuppressLint("MissingPermission") String imei = ((TelephonyManager) v.getContext().getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
-                                    builder.append("IMEI:\t").append(imei).append('\n').append("MD5:\t").append(Md5Util.MD5Encode(imei)).append('\t');
+                                TelephonyManager tm = (TelephonyManager) v.getContext().getSystemService(Context.TELEPHONY_SERVICE);
+                                String deviceId = null;
+                                try {
+                                    deviceId = tm.getDeviceId();
+                                } catch (Exception x) {
                                 }
+                                builder.append("deviceId:\t").append(deviceId).append('\n').append("MD5:\t").append(Md5Util.MD5Encode(deviceId == null ? "" : deviceId)).append('\n');
+
+                                String imei = null;
+                                try {
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        imei = tm.getImei();
+                                    }
+                                } catch (Exception x) {
+                                }
+                                builder.append("IMEI:\t").append(imei).append('\n').append("MD5:\t").append(Md5Util.MD5Encode(imei == null ? "" : imei)).append('\n');
+
                                 e.onNext(builder.toString());
                             });
                 })

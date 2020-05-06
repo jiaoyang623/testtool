@@ -21,7 +21,7 @@ public class TestProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         MatrixCursor c = new MatrixCursor(new String[]{"key", "value"});
-        c.addRow(new String[]{"a", "b"});
+        c.addRow(new String[]{"encrypt", "b"});
         return c;
     }
 

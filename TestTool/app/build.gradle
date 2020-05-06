@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-aspectjx'
 
 android {
     compileSdkVersion 28
@@ -21,15 +22,19 @@ android {
     }
 
     buildTypes {
+
+        def forPartner = "true"
         release {
             signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("Boolean", "FOR_PARTNER", forPartner)
         }
         debug {
             signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("Boolean", "FOR_PARTNER", forPartner)
         }
     }
 
@@ -60,3 +65,7 @@ dependencies {
     implementation 'android.arch.paging:runtime:1.0.1'
 }
 
+aspectjx {
+    //排除所有package路径中包含`android.support`的class文件及库（jar文件）
+    exclude 'android.support'
+}

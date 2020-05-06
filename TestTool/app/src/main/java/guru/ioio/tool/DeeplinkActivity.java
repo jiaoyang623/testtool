@@ -30,11 +30,13 @@ public class DeeplinkActivity extends AppCompatActivity {
         mBinding.recycler.setAdapter(mAdapter);
         mBinding.recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        List<DeeplinkBean> list = new ArrayList<>();
-        for (String item : getResources().getStringArray(R.array.deeplink_list)) {
-            list.add(DeeplinkBean.valueOf(item));
+        if (!BuildConfig.FOR_PARTNER) {
+            List<DeeplinkBean> list = new ArrayList<>();
+            for (String item : getResources().getStringArray(R.array.deeplink_list)) {
+                list.add(DeeplinkBean.valueOf(item));
+            }
+            mAdapter.add(list);
         }
-        mAdapter.add(list);
     }
 
     public boolean onGoClick() {
@@ -46,6 +48,19 @@ public class DeeplinkActivity extends AppCompatActivity {
             intent.setData(Uri.parse(text.trim()));
             startActivity(intent);
         }
+        return true;
+    }
+
+    public boolean onBrowseClick() {
+        String url = input.get();
+        String innerUrl = "qhvideo://vapp.360.cn/webview?url=" + Uri.encode(url);
+        String outerUrl = "qhvideo://vapp.360.cn/home?" + Uri.encode(innerUrl);
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse(outerUrl));
+        startActivity(intent);
         return true;
     }
 

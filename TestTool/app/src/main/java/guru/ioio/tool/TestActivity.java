@@ -6,20 +6,25 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 
 import java.util.Arrays;
 import java.util.List;
 
 import guru.ioio.tool.databinding.ActivityTestBinding;
+import guru.ioio.tool.tests.AspectTest;
 import guru.ioio.tool.tests.DemoTest;
 import guru.ioio.tool.tests.DnsTest;
 import guru.ioio.tool.tests.HookWifiManagerTest;
+import guru.ioio.tool.tests.HttpsTest;
 import guru.ioio.tool.tests.InfoTest;
+import guru.ioio.tool.tests.IpAddressTest;
 import guru.ioio.tool.tests.MSATest;
 import guru.ioio.tool.tests.MacAddress6Test;
 import guru.ioio.tool.tests.MacAddress7Test;
 import guru.ioio.tool.tests.MacAddress8Test;
+import guru.ioio.tool.tests.QdasTest;
 import guru.ioio.tool.utils.ExceptionUtils;
 import guru.ioio.tool.utils.RVBindingBaseAdapter;
 import io.reactivex.Observable;
@@ -36,6 +41,10 @@ public class TestActivity extends Activity {
             MacAddress7Test.class,
             MacAddress8Test.class,
             HookWifiManagerTest.class,
+            AspectTest.class,
+            IpAddressTest.class,
+            QdasTest.class,
+            HttpsTest.class,
     };
     public ObservableField<String> result = new ObservableField<>();
     public ObservableBoolean isLoading = new ObservableBoolean(false);
@@ -67,7 +76,7 @@ public class TestActivity extends Activity {
             ITest test = clazz.newInstance();
             observable = test.onClick(v);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            Log.e("error", "error", e);
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
