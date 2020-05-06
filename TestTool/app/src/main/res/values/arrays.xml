@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="deeplink_list">
+        <item>下载|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fdownload%3fname%3dhanjutv%26url%3dhttp%3a%2f%2fm.shouji.360tpcdn.com%2f180920%2f8590cf0881d2fd8a1e97c806734ac793%2fcom.joytv.hanju_105.apk%26bundle%3dcom.joytv.hanju%26position%3d3</item>
         <item>专题页|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2falbum</item>
         <item>钱包|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fwallet</item>
         <item>积分商城|qhvideo://vapp.360.cn/home?qhvideo%3a%2f%2fvapp.360.cn%2fcreditmall</item>
