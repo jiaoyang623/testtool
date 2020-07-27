@@ -11,7 +11,8 @@ public abstract class BaseTest implements ITest {
     @Override
     public Observable<String> onClick(View v) {
         return Observable.create(emitter -> {
-            emitter.onNext(doClick(v));
+            String result = doClick(v);
+            emitter.onNext(result == null ? "null" : result);
             emitter.onComplete();
         });
     }
