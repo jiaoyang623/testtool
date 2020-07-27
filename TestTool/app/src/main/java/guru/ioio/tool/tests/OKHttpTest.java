@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 public class OKHttpTest extends BaseTest {
     @Override
-    protected String doClick(View v) {
+    protected String doClick(View v) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request req = new Request.Builder()
                 .url("https://www.baidu.com")
@@ -19,12 +19,7 @@ public class OKHttpTest extends BaseTest {
                 .build();
 
         Call call = client.newCall(req);
-        try {
-            Response resp = call.execute();
-            return resp.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        Response resp = call.execute();
+        return resp.body().string();
     }
 }

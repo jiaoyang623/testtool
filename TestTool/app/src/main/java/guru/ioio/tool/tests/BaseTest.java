@@ -6,14 +6,19 @@ import guru.ioio.tool.ITest;
 import io.reactivex.Observable;
 
 public abstract class BaseTest implements ITest {
-    protected abstract String doClick(View v);
+    protected abstract String doClick(View v) throws Throwable;
 
     @Override
     public Observable<String> onClick(View v) {
         return Observable.create(emitter -> {
-            String result = doClick(v);
-            emitter.onNext(result == null ? "null" : result);
-            emitter.onComplete();
+            try {
+                String result = doClick(v);
+                emitter.onNext(result == null ? "null" : result);
+            } catch (Throwable throwable) {
+                emitter.onError(throwable);
+            } finally {
+                emitter.onComplete();
+            }
         });
     }
 
