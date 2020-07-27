@@ -37,9 +37,8 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".TestActivity"
+            android:name=".TestListActivity"
             android:screenOrientation="portrait" />
-
 
         <provider
             android:name=".TestProvider"
@@ -51,6 +50,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".FunctionTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".dagger.DaggerActivity"
             android:screenOrientation="portrait" />
     </application>
 

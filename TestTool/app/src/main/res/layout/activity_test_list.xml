@@ -3,42 +3,44 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="presenter"
-            type="guru.ioio.tool.TestActivity" />
+            type="guru.ioio.tool.TestListActivity" />
+
+        <import type="android.view.View" />
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="200dp"
-            android:background="#66aaff11"
-            android:clickable="@{!presenter.isLoading}" />
+            android:layout_height="300dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/recycler"
+            android:background="#666666" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="bottom"
-            android:background="#66ffaa11">
+            android:layout_height="match_parent"
+            android:layout_below="@id/recycler">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="@{presenter.result}" />
         </ScrollView>
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="@{presenter.isLoading ? View.VISIBLE : View.INVISIBLE}" />
-    </FrameLayout>
+            android:layout_centerInParent="true"
+            android:visibility="@{presenter.isLoading ? View.VISIBLE: View.INVISIBLE}" />
+    </RelativeLayout>
 </layout>
