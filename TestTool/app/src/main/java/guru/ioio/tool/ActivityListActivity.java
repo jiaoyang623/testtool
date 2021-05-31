@@ -41,8 +41,12 @@ public class ActivityListActivity extends Activity {
         try {
             PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_ACTIVITIES);
             List<ActivityInfo> list = new ArrayList<>(packageInfo.activities.length);
+            String repluginPrefix = getPackageName() + ".loader.a.";
             for (ActivityInfo info : packageInfo.activities) {
                 if (ActivityListActivity.class.getName().equals(info.name)) {
+                    continue;
+                }
+                if (info.name.startsWith(repluginPrefix)) {
                     continue;
                 }
                 list.add(info);

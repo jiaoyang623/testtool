@@ -7,7 +7,7 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
-public class MacAddress8Test extends BaseTest {
+public class MacAddress8Test extends AbsBaseTest {
     @Override
     protected String doClick(View v) {
         return getMacAddress();

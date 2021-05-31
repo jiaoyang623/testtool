@@ -5,7 +5,7 @@ import android.view.View;
 import guru.ioio.tool.ITest;
 import io.reactivex.Observable;
 
-public abstract class BaseTest implements ITest {
+public abstract class AbsBaseTest implements ITest {
     protected abstract String doClick(View v) throws Throwable;
 
     @Override

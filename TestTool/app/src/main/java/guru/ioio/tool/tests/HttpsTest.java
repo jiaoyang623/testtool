@@ -12,7 +12,7 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class HttpsTest extends BaseTest {
+public class HttpsTest extends AbsBaseTest {
     @Override
     protected String doClick(View v) {
         String result = "";

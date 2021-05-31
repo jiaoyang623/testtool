@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="guru.ioio.tool.function.WindowContainer" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/open_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v)->presenter.openWindow(v)}"
+            android:text="open_window" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/close_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/open_window"
+            android:onClick="@{(v)->presenter.closeWindow(v)}"
+            android:text="close_window" />
+    </RelativeLayout>
+</layout>

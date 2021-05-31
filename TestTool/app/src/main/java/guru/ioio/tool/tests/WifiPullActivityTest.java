@@ -3,7 +3,7 @@ package guru.ioio.tool.tests;
 import android.content.Intent;
 import android.view.View;
 
-public class WifiPullActivityTest extends BaseTest {
+public class WifiPullActivityTest extends AbsBaseTest {
     @Override
     protected String doClick(View v) {
         Intent intent = new Intent();

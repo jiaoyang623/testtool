@@ -20,7 +20,7 @@ import java.net.URI;
 
 import guru.ioio.tool.utils.GzipUtils;
 
-public class DnsTest extends BaseTest {
+public class DnsTest extends AbsBaseTest {
     @Override
     public String doClick(View v) {
         String result = getDnsCacheRequest();

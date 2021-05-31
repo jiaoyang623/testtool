@@ -1,1 +1,2 @@
+include ':growingio'
 include ':app'

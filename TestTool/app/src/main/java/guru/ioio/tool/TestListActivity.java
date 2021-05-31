@@ -10,14 +10,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import guru.ioio.tool.databinding.ActivityTestListBinding;
-import guru.ioio.tool.tests.DemoTest;
-import guru.ioio.tool.tests.MacAddress6Test;
-import guru.ioio.tool.tests.MacAddress7Test;
-import guru.ioio.tool.tests.MacAddress8Test;
-import guru.ioio.tool.tests.OKHttpTest;
+import guru.ioio.tool.tests.AbsBaseTest;
+import guru.ioio.tool.utils.ClassUtils;
 import guru.ioio.tool.utils.RVBindingBaseAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -30,14 +29,6 @@ public class TestListActivity extends Activity {
     private ActivityTestListBinding mBinding;
     private RVBindingBaseAdapter<Class<? extends ITest>> mAdapter;
 
-    private Class<? extends ITest>[] mClassList = new Class[]{
-            DemoTest.class,
-            MacAddress6Test.class,
-            MacAddress7Test.class,
-            MacAddress8Test.class,
-            OKHttpTest.class,
-    };
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +36,17 @@ public class TestListActivity extends Activity {
         mBinding.setPresenter(this);
         mAdapter = new RVBindingBaseAdapter<>(R.layout.item_test, BR.data);
         mAdapter.addPresenter(BR.presenter, this);
-        mAdapter.add(Arrays.asList(mClassList));
         mBinding.recycler.setAdapter(mAdapter);
         mBinding.recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayout.VERTICAL, false));
+
+        List<Class<? extends ITest>> list = new ArrayList<>();
+        for (Class<?> clazz : ClassUtils.getAllClass("guru.ioio.tool.tests")) {
+            if (ITest.class.isAssignableFrom(clazz) && !AbsBaseTest.class.equals(clazz)) {
+                list.add((Class<? extends ITest>) clazz);
+            }
+        }
+        Collections.sort(list, (o1, o2) -> o1.getSimpleName().compareTo(o2.getSimpleName()));
+        mAdapter.add(list);
     }
 
     private Disposable mLastTask = null;

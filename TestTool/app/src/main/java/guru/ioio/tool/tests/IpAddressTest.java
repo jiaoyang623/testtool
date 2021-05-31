@@ -8,7 +8,7 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
-public class IpAddressTest extends BaseTest {
+public class IpAddressTest extends AbsBaseTest {
     @Override
     protected String doClick(View v) {
         return getLocalIpAddress();

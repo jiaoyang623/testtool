@@ -5,7 +5,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.view.View;
 
-public class MacAddress6Test extends BaseTest {
+public class MacAddress6Test extends AbsBaseTest {
     @Override
     protected String doClick(View v) {
         return getLocalMacAddressFromWifiInfo(v.getContext());

@@ -2,7 +2,7 @@ package guru.ioio.tool.tests;
 
 import android.view.View;
 
-public class AspectTest extends BaseTest {
+public class AspectTest extends AbsBaseTest {
     @Override
     protected String doClick(View v) {
         return doClick("doClick View");
