@@ -8,7 +8,7 @@
             type="guru.ioio.testtool2.PanelActivity" />
     </data>
 
-    <LinearLayout
+    <guru.ioio.testtool2.widgets.CustomRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -17,13 +17,136 @@
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/clear_btn"
             android:text="12345678" />
 
         <Button
+            android:id="@+id/clear_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:onClick="@{(v)->presenter.onSelectAllClick(v)}"
             android:text="@string/select_all" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/noti_later"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.notificationNow(true)}"
+                android:text="noti now" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.notificationNow(false)}"
+                android:text="noti later" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/noti_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noti_later">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.notificationLevel(true)}"
+                android:text="noti max" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.notificationLevel(false)}"
+                android:text="noti min" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/gta_layer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/noti_level"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/gta_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GTA" />
+
+            <EditText
+                android:id="@+id/top_activity_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/coroutine_layer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gta_layer">
+
+            <Button
+                android:id="@+id/coroutine_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test" />
+
+            <TextView
+                android:id="@+id/coroutine_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/bottom_input"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.onChangeModeClick(v)}"
+                android:text="pan" />
+
+            <Button
+                android:id="@+id/resize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.onChangeModeClick(v)}"
+                android:text="resize" />
+
+            <Button
+                android:id="@+id/nothing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="@{(v)->presenter.onChangeModeClick(v)}"
+                android:text="nothing" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/bottom_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp" />
+    </guru.ioio.testtool2.widgets.CustomRelativeLayout>
 </layout>

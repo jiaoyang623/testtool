@@ -19,15 +19,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mBinding.presenter = this
-        mBinding.recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mBinding.recycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mAdapter = RVBindingBaseAdapter(R.layout.item_activity, BR.data)
+        mAdapter.addPresenter(BR.presenter, this)
         mBinding.recycler.adapter = mAdapter
-        mAdapter.add(getActivities(), 0)
+        mAdapter.add(getActivities())
     }
 
     private fun getActivities(): MutableList<ActivityInfo> {
         try {
-            val packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+            val packageInfo =
+                packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
             val list: MutableList<ActivityInfo> = ArrayList(packageInfo.activities.size)
             val repluginPrefix = "$packageName.loader.a."
             for (info in packageInfo.activities) {
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getActivityName(info: ActivityInfo): String {
-        return info.name.replace("$packageName.", "")
+        return (mAdapter.indexOf(info) + 1).toString() + ". " +
+                info.name.replace("$packageName.", "")
     }
 }
