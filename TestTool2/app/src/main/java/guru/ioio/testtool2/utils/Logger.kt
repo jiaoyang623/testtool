@@ -11,16 +11,16 @@ class Logger {
         mTag = tag ?: "default_tag"
     }
 
-    fun i(vararg params: Any) {
+    fun i(vararg params: Any?) {
         Log.i(mTag, parseWithCommon(params))
     }
 
-    fun ci(vararg params: Any) {
+    fun ci(vararg params: Any?) {
         Log.i(mTag, getSimpleCaller() + ": " + parseWithCommon(params))
     }
 
 
-    private fun parseWithCommon(params: Array<out Any>): String {
+    private fun parseWithCommon(params: Array<out Any?>): String {
         return getCommonLog() + parse(params)
     }
 
@@ -37,7 +37,7 @@ class Logger {
     }
 
     companion object {
-        fun parse(params: Array<out Any>): String {
+        fun parse(params: Array<out Any?>): String {
             val builder = StringBuilder()
             takeIf { params.isNotEmpty() }.let {
                 for (p in params) {
@@ -57,7 +57,7 @@ class Logger {
                     getMethod(trace[trace.size - 1])
                 }
                 else -> {
-                    getMethod(trace[4])
+                    getMethod(trace[5])
                 }
             }
         }

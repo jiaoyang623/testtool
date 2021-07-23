@@ -8,11 +8,21 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.facebook.battery.metrics.cpu.CpuMetricsCollector
+import guru.ioio.testtool2.utils.Logger
 import guru.ioio.testtool2.utils.RVBindingBaseAdapter
 import kotlinx.android.synthetic.main.activity_fragment_stack.*
 import kotlin.math.max
 
 class FragmentStackActivity : FragmentActivity() {
+    companion object {
+        private val sCollector: CpuMetricsCollector = CpuMetricsCollector()
+    }
+
+    private val mLogger = Logger(FragmentStackActivity::class.java.simpleName)
+    private val mInitialMetrics = sCollector.createMetrics()
+    private val mFinalMetrics = sCollector.createMetrics()
+
     private val mAdapter = RVBindingBaseAdapter<Fragment>(R.layout.item_fragment_stack, BR.data)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,12 +33,14 @@ class FragmentStackActivity : FragmentActivity() {
         mAdapter.addPresenter(BR.presenter, this)
 
         push_btn.setOnClickListener {
+            val name = "f.${supportFragmentManager.fragments.size + 1}"
             supportFragmentManager.beginTransaction()
                 .add(
                     R.id.fragment_container,
-                    newFragment("f.${supportFragmentManager.fragments.size + 1}")
+                    newFragment(name)
                 )
-                .commitNow()
+                .commit()
+
             mAdapter.set(supportFragmentManager.fragments)
         }
         pop_btn.setOnClickListener {
@@ -53,15 +65,40 @@ class FragmentStackActivity : FragmentActivity() {
         return f
     }
 
-    fun onItemClick(fragment: SampleFragment): Boolean {
+    fun pop(fragment: SampleFragment): Boolean {
         supportFragmentManager.beginTransaction().remove(fragment).commitNow()
         mAdapter.set(supportFragmentManager.fragments)
         return true
+    }
+
+    fun show(fragment: SampleFragment): Boolean {
+        supportFragmentManager.beginTransaction().show(fragment).commitNow()
+        mAdapter.set(supportFragmentManager.fragments)
+        return true
+    }
+
+    fun hide(fragment: SampleFragment): Boolean {
+        supportFragmentManager.beginTransaction().hide(fragment).commitNow()
+        mAdapter.set(supportFragmentManager.fragments)
+        return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sCollector.getSnapshot(mInitialMetrics)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sCollector.getSnapshot(mFinalMetrics)
+        mLogger.ci(mFinalMetrics.diff(mInitialMetrics))
     }
 }
 
 class SampleFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
     var mainText: String? = null
+    private val mLogger = Logger("SampleFragment")
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,4 +109,21 @@ class SampleFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
         v!!.findViewById<TextView>(R.id.fragment_discription).text = mainText
         return v
     }
+
+    override fun onPause() {
+        super.onPause()
+        mLogger.ci(mainText)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mLogger.ci(mainText)
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        mLogger.ci(mainText, hidden)
+    }
 }
+

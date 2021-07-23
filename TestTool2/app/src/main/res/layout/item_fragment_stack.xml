@@ -15,15 +15,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="@{(v)->presenter.onItemClick(data)}"
+            android:layout_weight="1"
             android:padding="15dp"
             android:text="@{data.mainText}"
             android:textColor="#ff000000"
             android:textSize="18sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="@{(v)->presenter.pop(data)}"
+            android:text="pop" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="@{(v)->presenter.show(data)}"
+            android:text="show" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="@{(v)->presenter.hide(data)}"
+            android:text="hide" />
     </LinearLayout>
 </layout>

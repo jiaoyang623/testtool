@@ -1,10 +1,10 @@
 package guru.ioio.testtool2
 
-import android.app.Application
 import android.content.Context
+import guru.ioio.testtool2.battery.BatteryApplication
 import guru.ioio.testtool2.lockscreen.LockScreenEventHelper
 
-class BaseApp : Application() {
+class BaseApp : BatteryApplication() {
     private val mLockScreenEventHelper = LockScreenEventHelper()
 
     override fun attachBaseContext(base: Context?) {

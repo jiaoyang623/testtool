@@ -31,6 +31,15 @@
         <activity
             android:name=".FragmentStackActivity"
             android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".battery.BatteryMetricsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".battery.HealthStatsActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".BrowserActivity"
+            android:screenOrientation="sensorPortrait" />
     </application>
 
 </manifest>

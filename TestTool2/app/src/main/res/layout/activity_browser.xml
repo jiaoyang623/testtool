@@ -8,6 +8,7 @@
         android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:imeOptions="actionGo"
         android:layout_toLeftOf="@id/go"
         android:hint="https://www.baidu.com"
         android:maxLines="1"
@@ -26,7 +27,7 @@
         android:text="go"
         android:textColor="#ffffff" />
 
-    <com.qihoo.webkit.WebView
+    <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,6 +38,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@id/address" />
+        android:layout_below="@id/address"
+        android:visibility="gone" />
 
 </RelativeLayout>
