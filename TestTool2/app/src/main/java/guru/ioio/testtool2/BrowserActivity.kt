@@ -14,9 +14,15 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.RequiresApi
+import androidx.core.content.FileProvider
+import guru.ioio.testtool2.utils.ITakeShot
+import guru.ioio.testtool2.utils.ScreenshotUtils
+import guru.ioio.testtool2.utils.Utils
 import kotlinx.android.synthetic.main.activity_browser.*
+import java.io.File
 
 class BrowserActivity : Activity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_browser)
@@ -68,6 +74,26 @@ class BrowserActivity : Activity() {
                 go.performClick()
             }
             false
+        }
+        screenshot.setOnClickListener {
+            ScreenshotUtils.takeShot(root, object : ITakeShot {
+                override fun onTaken(bitmap: Bitmap?) {
+                    bitmap?.let {
+                        val path = Utils.getCachePath() + "/screenshot.png"
+                        ScreenshotUtils.save(path, it)
+                        ImageViewerActivity.launch(
+                            this@BrowserActivity,
+                            FileProvider.getUriForFile(
+                                this@BrowserActivity,
+                                "$packageName.provider",
+                                File(path)
+                            )
+                        )
+                    }
+                }
+            })
+
+
         }
     }
 

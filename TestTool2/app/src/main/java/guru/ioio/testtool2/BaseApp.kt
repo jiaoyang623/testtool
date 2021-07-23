@@ -5,6 +5,17 @@ import guru.ioio.testtool2.battery.BatteryApplication
 import guru.ioio.testtool2.lockscreen.LockScreenEventHelper
 
 class BaseApp : BatteryApplication() {
+    companion object {
+        private var INSTANCE: BaseApp? = null
+        fun getInstance(): BaseApp {
+            return INSTANCE!!
+        }
+    }
+
+    init {
+        INSTANCE = this
+    }
+
     private val mLockScreenEventHelper = LockScreenEventHelper()
 
     override fun attachBaseContext(base: Context?) {
