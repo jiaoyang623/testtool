@@ -1,12 +1,12 @@
 package guru.ioio.testtool2
 
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.net.wifi.WifiManager
+import android.os.*
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.WindowManager
@@ -15,10 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import guru.ioio.testtool2.databinding.ActivityPanelBinding
-import guru.ioio.testtool2.utils.ActivityUtils
-import guru.ioio.testtool2.utils.KeyboardUtils
-import guru.ioio.testtool2.utils.Logger
-import guru.ioio.testtool2.utils.NotificationHelper
+import guru.ioio.testtool2.utils.*
 import kotlinx.android.synthetic.main.activity_panel.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -60,6 +57,77 @@ class PanelActivity : AppCompatActivity() {
         }
 
         initCoroutine()
+
+        initPrint()
+
+        initImei()
+
+        initRefresh()
+    }
+
+
+    private var mCount = 0
+    private val mLoopRunner = object : Runnable {
+        override fun run() {
+            mCount++
+            refresh_text.text = mCount.toString()
+            mHandler.removeCallbacks(this)
+            mHandler.postDelayed(this, 1000)
+            mLogger.ci(mCount)
+        }
+    }
+    private var mLock: PowerManager.WakeLock? = null
+
+
+    private fun initRefresh() {
+
+        refresh_looper.setOnCheckedChangeListener { _, isChecked ->
+            mHandler.removeCallbacks(mLoopRunner)
+            if (isChecked) {
+                mHandler.postDelayed(mLoopRunner, 1000)
+            }
+        }
+        refresh_lock.setOnCheckedChangeListener { _, isChecked ->
+            if (mLock == null) {
+                mLock = (getSystemService(POWER_SERVICE) as PowerManager).newWakeLock(
+                    PowerManager.ON_AFTER_RELEASE,
+                    "guru.ioio.testtool2:WakeLock"
+                )
+            }
+            if (isChecked) {
+                mLock!!.acquire()
+            } else {
+                mLock!!.release()
+            }
+        }
+    }
+
+    private fun initImei() {
+        imei_btn.setOnClickListener {
+            val wifiManager =
+                applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val mac = wifiManager.connectionInfo.macAddress
+            mLogger.ci(mac, JavaUtils().testMessage)
+        }
+    }
+
+
+    private fun initPrint() {
+        print_btn.setOnClickListener {
+            val count = print_time_et.text.toString()
+            val c = count.toInt()
+            val builder = StringBuilder()
+            for (i in 1..c) {
+                builder.clear()
+                for (i in 1..4) {
+                    builder.append("print $i ${System.currentTimeMillis()} ${System.nanoTime()}\n")
+                }
+                Log.i(
+                    "PanelActivity",
+                    builder.toString()
+                )
+            }
+        }
     }
 
     val handler = Handler(Looper.getMainLooper())

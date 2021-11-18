@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/go"
-        android:hint="https://www.baidu.com"
+        android:hint="https://play.cocosjoy.com/gameCenter?channel=161292"
         android:imeOptions="actionGo"
         android:maxLines="1"
         android:singleLine="true" />
@@ -36,10 +36,32 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/screenshot"
+            android:id="@+id/pixel_copy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="shot" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="pixel" />
+
+        <Button
+            android:id="@+id/canvas_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="canvas" />
+
+        <Button
+            android:id="@+id/view_cache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="cache" />
+
+        <Button
+            android:id="@+id/ban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ban" />
 
     </LinearLayout>
 

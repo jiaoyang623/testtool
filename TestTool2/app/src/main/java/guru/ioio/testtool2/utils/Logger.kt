@@ -2,14 +2,11 @@ package guru.ioio.testtool2.utils
 
 import android.util.Log
 
-class Logger {
-    private val mTag: String
+class Logger(tag: String?) {
+    private val mTag: String = tag ?: "default_tag"
     private var mCommonLogStr: String = ""
     private val mCommonLog: MutableList<String> = mutableListOf()
 
-    constructor(tag: String?) {
-        mTag = tag ?: "default_tag"
-    }
 
     fun i(vararg params: Any?) {
         Log.i(mTag, parseWithCommon(params))

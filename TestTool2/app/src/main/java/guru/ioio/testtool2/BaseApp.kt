@@ -1,10 +1,10 @@
 package guru.ioio.testtool2
 
+import android.app.Application
 import android.content.Context
-import guru.ioio.testtool2.battery.BatteryApplication
 import guru.ioio.testtool2.lockscreen.LockScreenEventHelper
 
-class BaseApp : BatteryApplication() {
+class BaseApp : Application() {
     companion object {
         private var INSTANCE: BaseApp? = null
         fun getInstance(): BaseApp {

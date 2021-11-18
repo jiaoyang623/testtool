@@ -23,7 +23,9 @@ class CoroutineActivity : Activity() {
             mLogger.ci(1, Thread.currentThread().name)
             GlobalScope.launch(Dispatchers.Main) {
                 mLogger.ci(2, Thread.currentThread().name)
-                showMessage(suspendAction())
+                val msg = suspendAction()
+                mLogger.ci(7, Thread.currentThread().name)
+                showMessage(msg)
             }
         }
     }

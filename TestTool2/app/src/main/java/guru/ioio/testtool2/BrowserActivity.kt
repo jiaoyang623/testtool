@@ -6,13 +6,11 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import guru.ioio.testtool2.utils.ITakeShot
@@ -44,11 +42,39 @@ class BrowserActivity : Activity() {
                 request: WebResourceRequest?
             ): Boolean {
                 val scheme = request?.url?.scheme
+                Log.i("web", "${request?.url}")
                 return if (scheme == "http" || scheme == "https") {
                     super.shouldOverrideUrlLoading(view, request)
                 } else {
-                    true
+                    false
                 }
+            }
+
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                Log.i("web", "$url")
+                return super.shouldOverrideUrlLoading(view, url)
+            }
+
+            override fun shouldInterceptRequest(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): WebResourceResponse? {
+                request?.url?.let {
+                    if (it.host == "googleads.g.doubleclick.net"
+                        && it.path == "/pagead/ads"
+                        && it.getQueryParameter("video_product_type") != null
+                        && it.getQueryParameter("ad_block") == "2"
+                    ) {
+                        Log.i("web", "deny  ${request?.url}")
+                    }
+//                    return@shouldInterceptRequest WebResourceResponse(
+//                        "text/html",
+//                        "utf-8",
+//                        ByteArrayInputStream("".toByteArray())
+//                    )
+                    return null
+                }
+                return null
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -57,6 +83,7 @@ class BrowserActivity : Activity() {
             }
         }
         webview.settings.javaScriptEnabled = true
+        webview.settings.domStorageEnabled = true
         webview.settings.setSupportZoom(true)
         webview.settings.loadWithOverviewMode = true
         webview.settings.useWideViewPort = true
@@ -75,26 +102,38 @@ class BrowserActivity : Activity() {
             }
             false
         }
-        screenshot.setOnClickListener {
-            ScreenshotUtils.takeShot(root, object : ITakeShot {
-                override fun onTaken(bitmap: Bitmap?) {
-                    bitmap?.let {
-                        val path = Utils.getCachePath() + "/screenshot.png"
-                        ScreenshotUtils.save(path, it)
-                        ImageViewerActivity.launch(
-                            this@BrowserActivity,
-                            FileProvider.getUriForFile(
-                                this@BrowserActivity,
-                                "$packageName.provider",
-                                File(path)
-                            )
-                        )
-                    }
-                }
-            })
-
-
+        pixel_copy.setOnClickListener {
+            ScreenshotUtils.takeShotPixelCopy(root, mTakeShotListener)
         }
+
+        canvas_copy.setOnClickListener {
+            ScreenshotUtils.takeShotCanvasCopy(root, mTakeShotListener)
+        }
+
+        view_cache.setOnClickListener {
+            ScreenshotUtils.takeShotCache(root, mTakeShotListener)
+        }
+        ban.setOnClickListener {
+            webview.loadUrl("javascript:window.onpopstate=function(){}")
+        }
+    }
+
+    private val mTakeShotListener = object : ITakeShot {
+        override fun onTaken(bitmap: Bitmap?) {
+            bitmap?.let {
+                val path = Utils.getCachePath() + "/screenshot.png"
+                ScreenshotUtils.save(path, it)
+                ImageViewerActivity.launch(
+                    this@BrowserActivity,
+                    FileProvider.getUriForFile(
+                        this@BrowserActivity,
+                        "$packageName.provider",
+                        File(path)
+                    )
+                )
+            }
+        }
+
     }
 
     override fun onBackPressed() {

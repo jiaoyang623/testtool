@@ -3,6 +3,7 @@ package guru.ioio.testtool2.utils
 import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.graphics.Rect
 import android.os.Build
 import android.os.Handler
@@ -17,7 +18,7 @@ import java.io.FileOutputStream
 class ScreenshotUtils {
     companion object {
         @RequiresApi(Build.VERSION_CODES.O)
-        fun takeShot(root: View, listener: ITakeShot): Bitmap? {
+        fun takeShotPixelCopy(root: View, listener: ITakeShot): Bitmap? {
 //            return root.drawingCache
             val loc = intArrayOf(0, 0)
             root.getLocationInWindow(loc)
@@ -33,6 +34,21 @@ class ScreenshotUtils {
                 Handler(Looper.myLooper()!!)
             )
             return BitmapFactory.decodeResource(BaseApp.getInstance().resources, R.drawable.bing)
+        }
+
+        fun takeShotCanvasCopy(root: View, listener: ITakeShot) {
+            val bitmap = Bitmap.createBitmap(root.width, root.height, Bitmap.Config.RGB_565)
+            val canvas = Canvas(bitmap)
+            root.invalidate()
+            root.draw(canvas)
+            listener.onTaken(bitmap)
+        }
+
+        fun takeShotCache(root: View, listener: ITakeShot) {
+            root.destroyDrawingCache()
+            root.buildDrawingCache()
+            root.isDrawingCacheEnabled = true
+            listener.onTaken(root.drawingCache)
         }
 
         fun save(path: String, bitmap: Bitmap?) {
