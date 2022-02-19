@@ -7,11 +7,13 @@
         <entry key="app/src/main/res/layout/activity_coroutine.xml" value="0.41822916666666665" />
         <entry key="app/src/main/res/layout/activity_room.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/activity_speech.xml" value="0.20339412360688958" />
+        <entry key="app/src/main/res/layout/activity_transcoder.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/item_room_image.xml" value="0.41822916666666665" />
+        <entry key="app/src/main/res/menu/transcoder.xml" value="0.21354166666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

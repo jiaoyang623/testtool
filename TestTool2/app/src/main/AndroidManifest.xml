@@ -58,6 +58,9 @@
         <activity
             android:name=".room.RoomActivity"
             android:screenOrientation="sensorPortrait" />
+        <activity
+            android:name=".TranscoderActivity"
+            android:screenOrientation="sensorPortrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
