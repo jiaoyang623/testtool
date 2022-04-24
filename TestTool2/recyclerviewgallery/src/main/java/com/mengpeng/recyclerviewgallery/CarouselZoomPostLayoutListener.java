@@ -11,14 +11,14 @@ import androidx.annotation.NonNull;
  * Tis implementation uses atan function for this purpose.
  */
 public class CarouselZoomPostLayoutListener implements CarouselLayoutManager.PostLayoutListener {
-    private final float SCALE = 0.8f;
+    private final float SCALE = 0.9f;
 
     @Override
     public ItemTransformation transformChild(@NonNull final View child, final float itemPositionToCenterDiff, final int orientation) {
 //        final float scale = (float) (2 * (2 * -StrictMath.atan(Math.abs(itemPositionToCenterDiff) + 1.0) / Math.PI + 1));
         float scale = SCALE;
         if (Math.abs(itemPositionToCenterDiff) < 1) {
-            scale = -0.2f * Math.abs(itemPositionToCenterDiff) + 1;
+            scale = (SCALE - 1) * Math.abs(itemPositionToCenterDiff) + 1;
         }
 
 //        Log.i("CZLL", itemPositionToCenterDiff + ", " + scale);

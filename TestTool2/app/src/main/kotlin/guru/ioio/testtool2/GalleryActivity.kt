@@ -19,7 +19,7 @@ class GalleryActivity : Activity() {
             }
             setList(list)
             onItemClickListener = { p ->
-                gallery.smoothScrollToPosition(p)
+                gallery.smoothScrollToPosition(p) // 滑动
             }
         }
     }
@@ -27,7 +27,7 @@ class GalleryActivity : Activity() {
     private val mLayoutManager by lazy {
         object : CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL) {}.apply {
             setPostLayoutListener(CarouselZoomPostLayoutListener())
-            addOnItemSelectionListener {
+            addOnItemSelectionListener { // 选中
                 result.text = "selected: $it"
             }
             maxVisibleItems =5
@@ -43,6 +43,7 @@ class GalleryActivity : Activity() {
             addOnScrollListener(CenterScrollListener())
             adapter = mAdapter
         }
+
         left.setOnClickListener {
             val p = mLayoutManager.centerItemPosition
             if (p - 1 >= 0) {

@@ -571,17 +571,20 @@ public class CarouselLayoutManager extends RecyclerView.LayoutManager implements
      * @return offset in scroll px coordinates.
      */
     protected int getCardOffsetByPositionDiff(final float itemPositionDiff) {
-        final double smoothPosition = convertItemPositionDiffToSmoothPositionDiff(itemPositionDiff);
+        // TODO
+//        final double smoothPosition = convertItemPositionDiffToSmoothPositionDiff(itemPositionDiff);
+        final double smoothPosition = itemPositionDiff;
 
         final int dimenDiff;
         if (VERTICAL == mOrientation) {
-            dimenDiff = (getHeightNoPadding() - mDecoratedChildHeight) / 2;
+//            dimenDiff = (getHeightNoPadding() - mDecoratedChildHeight);
+            dimenDiff = mDecoratedChildHeight;
         } else {
-            dimenDiff = (getWidthNoPadding() - mDecoratedChildWidth) / 2;
+            dimenDiff = mDecoratedChildWidth;
         }
         //noinspection NumericCastThatLosesPrecision
-        int result = (int) Math.round(Math.signum(itemPositionDiff) * dimenDiff * smoothPosition);
-        Log.i("CLM", itemPositionDiff + ", " + result);
+        int result = (int) Math.round(dimenDiff * smoothPosition);
+        Log.i("CLM", itemPositionDiff + "," + result + "," + smoothPosition);
         return result;
     }
 
