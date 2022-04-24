@@ -2,6 +2,6 @@
 
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/image"
-    android:layout_width="100dp"
-    android:layout_height="180dp"
+    android:layout_width="60dp"
+    android:layout_height="80dp"
     android:scaleType="centerCrop" />

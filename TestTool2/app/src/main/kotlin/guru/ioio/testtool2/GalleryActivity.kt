@@ -2,14 +2,12 @@ package guru.ioio.testtool2
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.mengpeng.recyclerviewgallery.CarouselLayoutManager
 import com.mengpeng.recyclerviewgallery.CarouselZoomPostLayoutListener
 import com.mengpeng.recyclerviewgallery.CenterScrollListener
-import com.mengpeng.recyclerviewgallery.ItemTransformation
 import kotlinx.android.synthetic.main.activity_gallery.*
 
 class GalleryActivity : Activity() {
@@ -32,6 +30,7 @@ class GalleryActivity : Activity() {
             addOnItemSelectionListener {
                 result.text = "selected: $it"
             }
+            maxVisibleItems =5
         }
     }
 
