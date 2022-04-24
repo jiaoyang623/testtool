@@ -1,18 +1,16 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31 // 28
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "guru.ioio.testtool2"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 31 //26
         versionCode 1
         versionName "1.0"
 
@@ -28,6 +26,16 @@ android {
             dataBinding true
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -66,10 +74,19 @@ dependencies {
     implementation "androidx.room:room-runtime:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
-    
+
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.0"
     implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
 
     implementation project(":transcoder")
+
+    implementation 'com.github.tiann:epic:0.11.2'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+
+//    implementation 'com.ryan.rv_gallery:rv-gallery:1.1.2'
+//    implementation 'com.github.mengpeng920223:RecyclerView-Gallery:v1.0.0'
+    implementation project(':recyclerviewgallery')
+
 }

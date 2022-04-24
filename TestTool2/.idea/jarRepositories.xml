@@ -91,5 +91,15 @@
       <option name="name" value="maven2" />
       <option name="url" value="https://maven.aliyun.com/repository/jcenter/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenLocal" />
+      <option name="name" value="MavenLocal" />
+      <option name="url" value="file:$USER_HOME$/.m2/repository/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven3" />
+      <option name="name" value="maven3" />
+      <option name="url" value="https://www.jitpack.io" />
+    </remote-repository>
   </component>
 </project>

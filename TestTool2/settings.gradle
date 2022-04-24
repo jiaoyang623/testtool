@@ -1,3 +1,4 @@
 include ':app'
 rootProject.name = "TestTool2"
 include ':transcoder'
+include ':recyclerviewgallery'

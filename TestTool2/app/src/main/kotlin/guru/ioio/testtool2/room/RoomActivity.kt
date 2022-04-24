@@ -5,17 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import guru.ioio.testtool2.R
 import guru.ioio.testtool2.db.model.ImageBean
+import guru.ioio.testtool2.hook.Test
 import kotlinx.android.synthetic.main.activity_room.*
 
 class RoomActivity : AppCompatActivity() {
     private val mViewModel = RoomViewModel()
     private val mAdapter = RoomAdapter()
+    private val mTest = Test()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
         initListener()
         initRecycler()
+        Test.hook()
     }
 
     private fun initRecycler() {
@@ -34,6 +37,7 @@ class RoomActivity : AppCompatActivity() {
                     "https://wallpapershome.com/images/pages/pic_v/11849.jpg"
                 )
             )
+            mTest.tryTest()
         }
 
         remove.setOnClickListener {
