@@ -3,6 +3,7 @@ package guru.ioio.testtool2
 import android.app.Application
 import android.content.Context
 import guru.ioio.testtool2.lockscreen.LockScreenEventHelper
+import guru.ioio.testtool2.nt.ClassLoaderManager
 
 class BaseApp : Application() {
     companion object {
@@ -20,6 +21,7 @@ class BaseApp : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        ClassLoaderManager.replaceSystemClassLoader(this)
     }
 
     override fun onCreate() {

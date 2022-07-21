@@ -73,6 +73,13 @@
             android:name=".SystemUiFlagActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".joystick.JoyStickActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".rv.RecyclerActivity"
+            android:screenOrientation="portrait" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
