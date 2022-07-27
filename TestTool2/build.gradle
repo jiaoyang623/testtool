@@ -2,14 +2,16 @@
 buildscript {
     ext.kotlin_version = "1.4.32" // 1.3.61
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url('https://maven.aliyun.com/repository/google/') }
         maven { url 'https://maven.aliyun.com/repository/jcenter/' }
         maven { url 'https://www.jitpack.io' }
         mavenCentral()
+        mavenLocal()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.3" // 3.6.1
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
+        classpath 'guru.ioio:aop-plugin:1.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -22,6 +24,7 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/jcenter/' }
         maven { url 'https://www.jitpack.io' }
         mavenCentral()
+        mavenLocal()
     }
     configurations.all {
         resolutionStrategy {
@@ -33,3 +36,5 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+apply from: 'demo.gradle'

@@ -1,0 +1,98 @@
+// =======================================
+// Gradle提供的钩子函数
+// 配置阶段：
+gradle.beforeProject {
+    println "gradle.beforeProject"
+}
+gradle.afterProject {
+    println "gradle.afterProject"
+}
+gradle.taskGraph.whenReady {
+    println "gradle.taskGraph.whenReady"
+}
+beforeEvaluate {
+
+    println "beforeEvaluate"
+}
+afterEvaluate {
+    println "afterEvaluate"
+}
+
+
+//==================
+// 为gradle设置监听
+gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+    @Override
+    void beforeEvaluate(Project project) {
+        println "Configure listener beforeEvaluate"
+    }
+
+    @Override
+    void afterEvaluate(Project project, ProjectState state) {
+        println "Configure listener afterEvaluate"
+    }
+})
+
+
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void buildStarted(Gradle gradle) {
+        println "Build listener buildStarted"
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println "Build listener settingsEvaluated"
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println "Build listener projectsLoaded"
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println "Build listener projectsEvaluated"
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println "Build listener buildFinished"
+    }
+})
+
+ext {
+    prop1 = "prop1"
+    prop3 = "prop3"
+}
+
+task runGradle {
+    println "configure runGradle $MIN_SDK_VERSION"
+    doFirst {
+        println "doFirst runGradle AAAAAA ${project.ext.prop3}"
+    }
+}
+
+class WriteTask extends DefaultTask {
+    @Input
+    String from
+
+    @OutputFile
+    File out
+
+    WriteTask() {}
+
+    @TaskAction
+    void fun() {
+        println "@TaskAction fun()"
+        println from
+        println out.toString()
+        out.createNewFile()
+        out.text = from
+    }
+}
+
+task myTask(type: WriteTask) {
+    from = "a/b/c"
+    out = file("test.txt")
+}

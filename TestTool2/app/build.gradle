@@ -1,7 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'guru.ioio.aop_plugin'
+}
 
 android {
     compileSdkVersion 31 // 28
@@ -19,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled(false)
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         buildFeatures {
@@ -93,3 +96,5 @@ dependencies {
     implementation project(':recyclerviewgallery')
 
 }
+
+apply from: '../script.gradle'

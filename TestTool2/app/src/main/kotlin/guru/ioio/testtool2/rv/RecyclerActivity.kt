@@ -8,7 +8,19 @@ import guru.ioio.testtool2.databinding.ActivityRecyclerBinding
 
 class RecyclerActivity : Activity() {
     private val mBinding by lazy { ActivityRecyclerBinding.inflate(LayoutInflater.from(this)) }
-    private val mAdapter by lazy { RvAdapter() }
+    private val mAdapter by lazy {
+        RvAdapter().apply {
+            loadMoreModule.run {
+                isEnableLoadMore = true
+                enableLoadMoreEndClick = false
+                isAutoLoadMore = true
+                setOnLoadMoreListener {
+                    addEnd()
+                }
+//            loadMoreView = CustomLoadMoreView()
+            }
+        }
+    }
     private val mLayoutManager by lazy {
         LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
@@ -21,14 +33,10 @@ class RecyclerActivity : Activity() {
             adapter = mAdapter
         }
         mBinding.addEndBtn.setOnClickListener {
-            for (i in 0..10) {
-                mAdapter.addData((mAdapter.data.maxOrNull() ?: 0) + 1)
-            }
+            addEnd()
         }
         mBinding.addFrontBtn.setOnClickListener {
-            for (i in 0..10) {
-                mAdapter.addData(0, (mAdapter.data.minOrNull() ?: 0) - 1)
-            }
+            addFront()
         }
         mBinding.clearBtn.setOnClickListener {
             mAdapter.setList(emptyList())
@@ -46,5 +54,25 @@ class RecyclerActivity : Activity() {
             }
 
         }
+    }
+
+    private fun addFront() {
+        val end = (mAdapter.data.minOrNull() ?: 0)
+        val list = mutableListOf<Int>()
+        for (i in end - 10 until end) {
+            list.add(i)
+        }
+        mAdapter.addData(0, list)
+        mAdapter.loadMoreModule.loadMoreComplete()
+    }
+
+    private fun addEnd() {
+        val start = mAdapter.data.maxOrNull() ?: 0 + 1
+        val list = mutableListOf<Int>()
+        for (i in start until start + 10) {
+            list.add(i)
+        }
+        mAdapter.addData(list)
+        mAdapter.loadMoreModule.loadMoreComplete()
     }
 }

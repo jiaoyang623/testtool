@@ -1,0 +1,11 @@
+afterEvaluate {
+    println tasks.getByName("packageDebug")
+    task zip(type: Zip) {
+        archiveName "outputs2.zip"
+        destinationDir file("${buildDir}/custom")
+        from tasks.getByName("packageDebug").outputs.files
+        tasks.getByName("packageDebug").outputs.files.each {
+            println it
+        }
+    }
+}
