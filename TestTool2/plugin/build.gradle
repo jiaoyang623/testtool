@@ -25,7 +25,7 @@ gradlePlugin {
     // Define the plugin
     plugins {
         aop {
-            id = 'guru.ioio.aop_plugin'
+            id = 'AopPlugin'
             implementationClass = 'guru.ioio.aop_plugin.AopPlugin'
         }
     }

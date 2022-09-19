@@ -79,6 +79,9 @@
         <activity
             android:name=".rv.RecyclerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".rv.DecorationActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
